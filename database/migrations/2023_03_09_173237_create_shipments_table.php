@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignId('courier_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignId('courier_shipping_option_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

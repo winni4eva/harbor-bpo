@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('agency_clients', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('agency_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->foreignId('client_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+            $table->index(['agency_id', 'client_id']);
             $table->timestamps();
         });
     }

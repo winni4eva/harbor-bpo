@@ -15,6 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('role', ['Admin', 'Client', 'Agency'])->default('Agency');
+            $table->foreignId('company_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

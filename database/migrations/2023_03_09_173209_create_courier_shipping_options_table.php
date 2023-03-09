@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('courier_shipping_options', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('courier_id')
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@ return new class extends Migration
                 ->constrained('users', 'id')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
-            $table->index(['agency_id', 'client_id']);
+            $table->unique(['agency_id', 'client_id']);
             $table->timestamps();
         });
     }

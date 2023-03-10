@@ -1,5 +1,12 @@
 <script setup>
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
+
+import useShipments from '@/composables/shipments';
+import { onMounted } from 'vue';
+
+const { shipments, getShipments } = useShipments()
+
+onMounted(getShipments)
 </script>
 
 <template>
@@ -11,12 +18,52 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
                 Harbor BPO!
             </h1>
 
-            <!-- <p class="mt-6 text-gray-500 leading-relaxed">
-                Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
-                to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
-                you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
-                ecosystem to be a breath of fresh air. We hope you love it.
-            </p> -->
+            <table class="min-w-full border divide-y divide-gray-200" v-if="shipments.length">
+                <thead>
+                    <tr>
+                        <th class="px-6 py-3 bg-gray-50">
+                            <span
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Name</span>
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50">
+                            <span
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Email</span>
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50">
+                            <span
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Address</span>
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50">
+                            <span
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Website</span>
+                        </th>
+                    </tr>
+                </thead>
+
+            <tbody class="bg-white divide-y divide-gray-200 divide-solid">
+                <template v-for="item in shipments" :key="item.id">
+                    <tr class="bg-white">
+                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.name }}
+                        </td>
+                        <!-- <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.email }}
+                        </td>
+                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.address }}
+                        </td>
+                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.website }}
+                        </td> -->
+                    </tr>
+                </template>
+            </tbody>
+            </table>
+
+
+            <p class="mt-6 text-gray-500 leading-relaxed" v-if="!shipments.length">
+                No shipments found...
+            </p>
         </div>
 
         <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">

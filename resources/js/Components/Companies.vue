@@ -3,8 +3,17 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 import useCompanies from '@/composables/companies';
 import { onMounted } from 'vue';
+import { reactive } from 'vue'
 
-const { companies, getCompanies } = useCompanies()
+const { companies, getCompanies, storeCompany, errors } = useCompanies()
+
+const form = reactive({
+    name: ''
+})
+
+const saveCompany = async () => {
+    await storeCompany({ ...form })
+}
 
 onMounted(getCompanies)
 </script>
@@ -67,7 +76,23 @@ onMounted(getCompanies)
         </div>
 
         <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-6 lg:p-8">
-            
+            <form class="space-y-6" @submit.prevent="saveCompany">
+                <div class="space-y-4 rounded-md shadow-sm">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                        <div class="mt-1">
+                            <input type="text" name="name" id="name"
+                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                                    v-model="form.name">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit"
+                        class="inline-flex items-center px-4 py-2 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md ring-gray-300 hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring disabled:opacity-25">
+                    Create
+                </button>
+            </form>
         </div>
     </div>
 </template>

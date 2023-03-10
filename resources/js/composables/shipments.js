@@ -11,7 +11,7 @@ export default function useShipments() {
 
     const getShipments = async () => {
         let response = await axios.get('/api/shipments')
-        shipments.value = response
+        shipments.value = response.data
     }
 
     // const getCompany = async (id) => {

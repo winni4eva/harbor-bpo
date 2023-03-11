@@ -17,4 +17,14 @@ class Company extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function couriers()
+    {
+        return $this->hasMany(Courier::class);
+    }
+
+    public function employees()
+    {
+        return $this->hasMany(User::class);
+    }
 }

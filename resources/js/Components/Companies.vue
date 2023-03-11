@@ -2,8 +2,8 @@
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 import useCompanies from '@/composables/companies';
-import { onMounted } from 'vue';
-import { reactive } from 'vue'
+import { usePage } from '@inertiajs/vue3';
+import { onMounted, reactive, computed } from 'vue';
 
 const { companies, getCompanies, storeCompany, errors } = useCompanies()
 
@@ -15,7 +15,9 @@ const saveCompany = async () => {
     await storeCompany({ ...form })
 }
 
-onMounted(getCompanies)
+const {...userInfo} = computed(() => usePage().props.auth).value;
+
+onMounted(getCompanies(userInfo.user.id))
 </script>
 
 <template>
@@ -26,7 +28,7 @@ onMounted(getCompanies)
             <!-- <h1 class="mt-8 text-2xl font-medium text-gray-900">
                 Companies!
             </h1> -->
-
+            <p>ID {{ $page.props.auth.user.id }}</p>
             <table class="min-w-full border divide-y divide-gray-200" v-if="companies.length">
                 <thead>
                     <tr>

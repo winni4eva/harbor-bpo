@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CourierResource;
 use App\Models\Courier;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourierController extends Controller
 {
@@ -14,7 +17,12 @@ class CourierController extends Controller
      */
     public function index()
     {
-        return Courier::all();
+        $user = User::find(request()->userId);
+        if ($user->role != 'Admin') {
+            return CourierResource::collection(Courier::where('company_id', $user->company_id)->get());
+        }
+        
+        return CourierResource::collection(Courier::all());
     }
 
     /**

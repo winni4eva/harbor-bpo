@@ -18,4 +18,9 @@ class Courier extends Model
         'name',
         'company_id'
     ];
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

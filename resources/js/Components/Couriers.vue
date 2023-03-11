@@ -3,8 +3,8 @@ import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 import useCompanies from '@/composables/companies';
 import useCouriers from '@/composables/couriers';
-import { onMounted } from 'vue';
-import { reactive } from 'vue'
+import { usePage } from '@inertiajs/vue3';
+import { onMounted, computed, reactive } from 'vue';
 
 const { companies, getCompanies } = useCompanies()
 const { couriers, getCouriers, storeCourier } = useCouriers()
@@ -18,8 +18,10 @@ const saveCourier = async () => {
     await storeCourier({ ...form })
 }
 
-onMounted(getCompanies)
-onMounted(getCouriers)
+const {...userInfo} = computed(() => usePage().props.auth).value;
+
+onMounted(getCompanies(userInfo.user.id))
+onMounted(getCouriers(userInfo.user.id))
 </script>
 
 <template>
@@ -40,15 +42,7 @@ onMounted(getCouriers)
                         </th>
                         <th class="px-6 py-3 bg-gray-50">
                             <span
-                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Email</span>
-                        </th>
-                        <th class="px-6 py-3 bg-gray-50">
-                            <span
-                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Address</span>
-                        </th>
-                        <th class="px-6 py-3 bg-gray-50">
-                            <span
-                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Website</span>
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Company</span>
                         </th>
                     </tr>
                 </thead>
@@ -60,13 +54,7 @@ onMounted(getCouriers)
                             {{ item.name }}
                         </td>
                         <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ item.name }}
-                        </td>
-                        <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ item.name }}
-                        </td>
-                        <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ item.name }}
+                            {{ item.relationships.company.name }}
                         </td>
                     </tr>
                 </template>

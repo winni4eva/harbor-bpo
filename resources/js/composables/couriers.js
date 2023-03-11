@@ -5,9 +5,9 @@ export default function useCouriers() {
     const couriers = ref([])
     const errors = ref('')
 
-    const getCouriers = async () => {
-        let response = await axios.get('/api/couriers')
-        couriers.value = response.data
+    const getCouriers = async (userId) => {
+        let response = await axios.get(`/api/couriers?userId=${userId}`)
+        couriers.value = response.data.data
     }
 
     const storeCourier = async (data) => {

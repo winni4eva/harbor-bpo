@@ -21,6 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('/shipments', ShipmentController::class);
-Route::resource('/companies', CompanyController::class);
-Route::resource('/couriers', CourierController::class);
+//Route::group(['middleware' => ['auth:sanctum']], function() {
+    Route::resource('/shipments', ShipmentController::class);
+    Route::resource('/companies', CompanyController::class);
+    Route::resource('/couriers', CourierController::class);
+//});

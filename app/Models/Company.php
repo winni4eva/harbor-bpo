@@ -20,11 +20,11 @@ class Company extends Model
 
     public function couriers()
     {
-        return $this->hasMany(Courier::class);
+        return $this->hasMany(Courier::class, 'company_id', 'id');
     }
 
     public function employees()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(User::class , 'company_id', 'id');
     }
 }

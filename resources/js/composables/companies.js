@@ -11,7 +11,7 @@ export default function useCompanies() {
 
     const getCompanies = async (userId) => {
         let response = await axios.get(`/api/companies?userId=${userId}`, config)
-        companies.value = response.data
+        companies.value = response.data.data
     }
 
     const storeCompany = async (data) => {

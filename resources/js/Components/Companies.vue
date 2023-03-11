@@ -28,7 +28,7 @@ onMounted(getCompanies(userInfo.user.id))
             <!-- <h1 class="mt-8 text-2xl font-medium text-gray-900">
                 Companies!
             </h1> -->
-            <p>ID {{ $page.props.auth.user.id }}</p>
+           
             <table class="min-w-full border divide-y divide-gray-200" v-if="companies.length">
                 <thead>
                     <tr>
@@ -38,15 +38,11 @@ onMounted(getCompanies(userInfo.user.id))
                         </th>
                         <th class="px-6 py-3 bg-gray-50">
                             <span
-                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Email</span>
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Couriers</span>
                         </th>
                         <th class="px-6 py-3 bg-gray-50">
                             <span
-                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Address</span>
-                        </th>
-                        <th class="px-6 py-3 bg-gray-50">
-                            <span
-                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Website</span>
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Employees</span>
                         </th>
                     </tr>
                 </thead>
@@ -58,13 +54,10 @@ onMounted(getCompanies(userInfo.user.id))
                             {{ item.name }}
                         </td>
                         <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ item.name }}
+                            {{ item.relationships.couriers?.length }}
                         </td>
                         <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ item.name }}
-                        </td>
-                        <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ item.name }}
+                            {{ item.relationships.employees?.length }}
                         </td>
                     </tr>
                 </template>

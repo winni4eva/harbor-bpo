@@ -35,5 +35,9 @@ Route::middleware([
 
     Route::get('/companies', function () {
         return Inertia::render('Companies');
-    })->name('companies');
+    })->name('companies'); 
+
+    Route::get('/couriers', function () {
+        return Inertia::render('Couriers');
+    })->name('couriers');
 });

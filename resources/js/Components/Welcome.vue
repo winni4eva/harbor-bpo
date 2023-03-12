@@ -2,11 +2,13 @@
 import ApplicationLogo from '@/Components/ApplicationLogo.vue';
 
 import useShipments from '@/composables/shipments';
-import { onMounted } from 'vue';
+import { usePage } from '@inertiajs/vue3';
+import { onMounted, computed } from 'vue';
 
 const { shipments, getShipments } = useShipments()
+const {...userInfo} = computed(() => usePage().props.auth).value;
 
-onMounted(getShipments)
+onMounted(getShipments(userInfo.user.id))
 </script>
 
 <template>

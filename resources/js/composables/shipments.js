@@ -9,9 +9,9 @@ export default function useShipments() {
     const errors = ref('')
     //const router = useRouter()
 
-    const getShipments = async () => {
-        let response = await axios.get('/api/shipments')
-        shipments.value = response.data
+    const getShipments = async (userId) => {
+        let response = await axios.get(`/api/shipments?userId=${userId}`)
+        shipments.value = response.data.data
     }
 
     // const getCompany = async (id) => {
@@ -19,20 +19,21 @@ export default function useShipments() {
     //     company.value = response.data.data
     // }
 
-    // const storeCompany = async (data) => {
-    //     errors.value = ''
-    //     try {
-    //         await axios.post('/api/companies', data)
-    //         await router.push({ name: 'companies.index' })
-    //     } catch (e) {
-    //         if (e.response.status === 422) {
-    //             for (const key in e.response.data.errors) {
-    //                 errors.value = e.response.data.errors
-    //             }
-    //         }
-    //     }
+    const storeShipment = async (data) => {
+        errors.value = ''
+        try {
+            await axios.post('/api/shipments', data)
+            //await router.push({ name: 'companies.index' })
+            this.$inertia.visit(route('shipment'), { method: 'get', data: 'Shipment saved successfully' });
+        } catch (e) {
+            if (e.response?.status === 422) {
+                for (const key in e.response.data.errors) {
+                    errors.value = e.response.data.errors
+                }
+            }
+        }
 
-    // }
+    }
 
     // const updateCompany = async (id) => {
     //     errors.value = ''
@@ -54,7 +55,7 @@ export default function useShipments() {
         shipments,
         //getCompany,
         getShipments,
-        //storeCompany,
+        storeShipment,
         //updateCompany
     }
 }

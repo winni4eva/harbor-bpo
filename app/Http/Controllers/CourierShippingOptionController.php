@@ -32,7 +32,6 @@ class CourierShippingOptionController extends Controller
      */
     public function store(Request $request)
     {
-        logger('Request' . $request->name);
         //$request->validated($request->all());
 
         // $account = Account::create([

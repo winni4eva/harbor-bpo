@@ -44,4 +44,8 @@ Route::middleware([
     Route::get('/shipping_option', function () {
         return Inertia::render('ShippingOption');
     })->name('shipping_option');
+
+    Route::get('/shipment', function () {
+        return Inertia::render('Shipment');
+    })->name('shipment');
 });

@@ -24,7 +24,8 @@ export default function useShipments() {
         try {
             await axios.post('/api/shipments', data)
             //await router.push({ name: 'companies.index' })
-            this.$inertia.visit(route('shipment'), { method: 'get', data: 'Shipment saved successfully' });
+            //this.$inertia.visit(route('shipment'), { method: 'get', data: 'Shipment saved successfully' });
+            window.location.href = window.location.href 
         } catch (e) {
             if (e.response?.status === 422) {
                 for (const key in e.response.data.errors) {

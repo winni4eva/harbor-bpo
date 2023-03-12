@@ -1,5 +1,6 @@
 import { ref } from 'vue'
 import axios from 'axios'
+import { router } from '@inertiajs/vue3'
 
 export default function useCouriers() {
     const couriers = ref([])
@@ -15,7 +16,9 @@ export default function useCouriers() {
         try {
             await axios.post('/api/couriers', data)
             //await router.push({ name: 'companies.index' })
-            this.$inertia.visit(route('couriers'), { method: 'get', data: 'Courier saved successfully' });
+            //this.$inertia.visit(route('couriers'), { method: 'get', data: 'Courier saved successfully' });
+            //router.reload({ only: ['couriers'] })
+            window.location.href = window.location.href 
         } catch (e) {
             if (e.response?.status === 422) {
                 for (const key in e.response.data.errors) {

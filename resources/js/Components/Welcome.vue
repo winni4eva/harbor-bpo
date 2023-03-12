@@ -17,7 +17,7 @@ onMounted(getShipments(userInfo.user.id))
             <!-- <ApplicationLogo class="block h-12 w-auto" /> -->
 
             <h1 class="mt-8 text-2xl font-medium text-gray-900">
-                Harbor BPO!
+                Shipments
             </h1>
 
             <table class="min-w-full border divide-y divide-gray-200" v-if="shipments.length">
@@ -41,7 +41,7 @@ onMounted(getShipments(userInfo.user.id))
                         </th>
                         <th class="px-6 py-3 bg-gray-50">
                             <span
-                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Weight</span>
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Weight (kg)</span>
                         </th>
                         <th class="px-6 py-3 bg-gray-50">
                             <span

@@ -19,7 +19,8 @@ export default function useCompanies() {
         try {
             await axios.post('/api/companies', data)
             //await router.push({ name: 'companies.index' })
-            this.$inertia.visit(route('companies'), { method: 'get', data: 'Company saved successfully' });
+            //this.$inertia.visit(route('companies'), { method: 'get', data: 'Company saved successfully' });
+            window.location.href = window.location.href 
         } catch (e) {
             if (e.response?.status === 422) {
                 for (const key in e.response.data.errors) {

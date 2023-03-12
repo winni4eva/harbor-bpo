@@ -48,4 +48,8 @@ Route::middleware([
     Route::get('/shipment', function () {
         return Inertia::render('Shipment');
     })->name('shipment');
+
+    Route::get('/reports', function () {
+        return Inertia::render('Report');
+    })->name('reports');
 });

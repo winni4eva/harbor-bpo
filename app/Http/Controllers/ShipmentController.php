@@ -47,7 +47,7 @@ class ShipmentController extends Controller
             'courier_shipping_option_id' => $request->courier_shipping_option_id,
             'weight' => $request->weight,
             'size' => $request->length .' x '. $request->breadth,
-            'tracking' => mt_rand(1000000, 9000000)
+            'tracking' => 'BPO_'.mt_rand(1000000, 9000000)
         ]);
     }
 }

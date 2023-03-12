@@ -42,6 +42,10 @@ onMounted(getShippingOptions(userInfo.user.id))
                         </th>
                         <th class="px-6 py-3 bg-gray-50">
                             <span
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Courier</span>
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50">
+                            <span
                                 class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Company</span>
                         </th>
                     </tr>
@@ -54,7 +58,10 @@ onMounted(getShippingOptions(userInfo.user.id))
                             {{ item.name }}
                         </td>
                         <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ item.name }}
+                            {{ item.relationships.courier.name }}
+                        </td>
+                        <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.relationships.courier.relationships.company.name }}
                         </td>
                     </tr>
                 </template>

@@ -40,4 +40,8 @@ Route::middleware([
     Route::get('/couriers', function () {
         return Inertia::render('Couriers');
     })->name('couriers');
+
+    Route::get('/shipping_option', function () {
+        return Inertia::render('ShippingOption');
+    })->name('shipping_option');
 });

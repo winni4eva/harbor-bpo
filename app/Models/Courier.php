@@ -23,4 +23,9 @@ class Courier extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function shippingOptions()
+    {
+        return $this->hasMany(CourierShippingOption::class);
+    }
 }

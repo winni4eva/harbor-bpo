@@ -18,6 +18,7 @@ class ShipmentResource extends JsonResource
             'id' => $this->id,
             'weight' => $this->weight,
             'size' => $this->size,
+            'tracking' => $this->tracking,
             'relationships' => [
                 'employee' => new UserResource($this->employee),
                 'courier' => new CourierResource($this->courier),

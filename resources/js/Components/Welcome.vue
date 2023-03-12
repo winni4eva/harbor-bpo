@@ -25,19 +25,31 @@ onMounted(getShipments(userInfo.user.id))
                     <tr>
                         <th class="px-6 py-3 bg-gray-50">
                             <span
-                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Name</span>
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Company</span>
                         </th>
                         <th class="px-6 py-3 bg-gray-50">
                             <span
-                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Email</span>
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Employee</span>
                         </th>
                         <th class="px-6 py-3 bg-gray-50">
                             <span
-                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Address</span>
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Courier</span>
                         </th>
                         <th class="px-6 py-3 bg-gray-50">
                             <span
-                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Website</span>
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Shipping Option</span>
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50">
+                            <span
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Weight</span>
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50">
+                            <span
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Size (lxb)</span>
+                        </th>
+                        <th class="px-6 py-3 bg-gray-50">
+                            <span
+                                class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase">Tracking</span>
                         </th>
                     </tr>
                 </thead>
@@ -45,18 +57,27 @@ onMounted(getShipments(userInfo.user.id))
             <tbody class="bg-white divide-y divide-gray-200 divide-solid">
                 <template v-for="item in shipments" :key="item.id">
                     <tr class="bg-white">
-                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ item.name }}
+                        <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.relationships.employee.relationships.company.name }}
                         </td>
-                        <!-- <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ item.email }}
+                        <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.relationships.employee.name }}
                         </td>
-                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ item.address }}
+                        <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.relationships.courier.name }}
                         </td>
-                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                            {{ item.website }}
-                        </td> -->
+                        <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.relationships.shipping_option.name }}
+                        </td>
+                        <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.weight }}
+                        </td>
+                        <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.size }}
+                        </td>
+                        <td class="px-6 py-4 text-sm text-center leading-5 text-gray-900 whitespace-no-wrap">
+                            {{ item.tracking }}
+                        </td>
                     </tr>
                 </template>
             </tbody>
